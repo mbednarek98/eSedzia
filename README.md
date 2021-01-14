@@ -1,1 +1,1 @@
-# eSedzia_NodeJS-website
+# eSedzia NodeJS website
