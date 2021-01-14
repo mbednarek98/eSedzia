@@ -1,0 +1,35 @@
+<%- include('../fragments/header.ejs') %>
+    <main>
+        <h2>Szczegóły dotyczące wyroku <%= judgm.JudgmentID %>
+        </h2>
+        <form id="judgmentForm" class="form2">
+            <label for="Date">Data wyroku:</label>
+            <input type="date" name="Date" id="Date"
+                value="<%= (judgm.Date) ? judgm.Date.toISOString().split('T')[0] : '' %>" disabled />
+            <label for="Description">Opis wyroku:</label>
+            <textarea form="judgmentForm" name="Description" id="Description" cols="35" rows="10" wrap="soft"
+                disabled><%= judgm.Description %></textarea>
+            <label for="Verdict">Werdykt:</label>
+            <input type="text" name="Verdict" id="Verdict" value="<%= judgm.Verdict %>" disabled />
+            <label for="Penalty">Kara pieniężna (PLN):</label>
+            <input type="number" name="Penalty" id="Penalty" value="<%= judgm.Penalty %>" disabled />
+            <label for="ChargeID">Zarzut:</label>
+            <select name="ChargeID" id="ChargeID" disabled>
+                <option value="<%= judgm.ChargeID %>">
+                    <%= judgm.charge.Name %>
+                </option>
+            </select>
+            <label for="GpersonID">Skazany:</label>
+            <select name="GpersonID" id="GpersonID" disabled>
+                <option value="<%= judgm.gperson.GpersonID %>">
+                    <%= judgm.gperson.Name %>
+                        <%= judgm.gperson.Surname %>
+                </option>
+            </select>
+            <div class="form-buttons">
+                <a href="/judgment/edit/<%= judgm.JudgmentID %>" class="form-button-edit">Edytuj</a>
+                <a href="/judgment" class="form-button-cancel">Cofnij</a>
+            </div>
+        </form>
+    </main>
+    <%- include('../fragments/footer.ejs') %>

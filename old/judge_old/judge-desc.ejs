@@ -1,0 +1,65 @@
+<%- include('../fragments/header.ejs') %>
+    <main>
+        <h2>Szczegóły dotyczące sędziego <%= judg.personJ.Name %>
+                <%= judg.personJ.Surname %>
+        </h2>
+        <form class="form2">
+            <label for="Name">Imię:</label>
+            <input type="text" name="Name" id="Name" value="<%= judg.personJ.Name %>" disabled />
+            <label for="Surname">Nazwisko:</label>
+            <input type="text" name="Surname" id="Surname" value="<%= judg.personJ.Surname %>" disabled />
+            <label for="PhoneNumber">Numer telefonu:</label>
+            <input type="text" name="PhoneNumber" id="PhoneNumber" value="<%= judg.personJ.PhoneNumber %>" disabled />
+            <label for="Retired">Emerytowany:</label>
+            <input type="text" name="Retired" id="Retired" value="<%= judg.Retired %>" disabled />
+            <label for="DateofObtainingQualification">Data zdobycia kwalifikacji:</label>
+            <input type="date" name="DateofObtainingQualification" id="DateofObtainingQualification"
+                value="<%= (judg.DateofObtainingQualification) ? judg.DateofObtainingQualification.toISOString().split('T')[0] : '' %>"
+                disabled />
+            <div class="form-buttons">
+                <a href="/judge/edit/<%=judg.personJ.PersonID%>" class="form-button-edit">Edytuj</a>
+            </div>
+        </form>
+        <h2>Wyroki</h2>
+        <div class="table">
+            <table class="table-list" id="judgmentL">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Zarzut</th>
+                        <th>Opis</th>
+                        <th>Werdykt</th>
+                        <th>Kara pieniężna</th>
+                        <th>Skazany</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let g of judg.judgments) { %>
+                        <tr>
+                            <td>
+                                <%= (g.Date) ? g.Date.toISOString().split('T')[0] : '' %>
+                            </td>
+                            <td>
+                                <%= g.charge.Name %>
+                            </td>
+                            <td>
+                                <%= g.Description %>
+                            </td>
+                            <td>
+                                <%= g.Verdict %>
+                            </td>
+                            <td>
+                                <%= g.Penalty %>
+                            </td>
+                            <td>
+                                <%= g.gperson.personG.Name %>
+                                    <%= g.gperson.personG.Surname %>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <a href="/judge" class="form-button-return">Powrot</a>
+    </main>
+    <%- include('../fragments/footer.ejs') %>

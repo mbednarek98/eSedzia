@@ -1,0 +1,61 @@
+<%- include('../fragments/header.ejs') %>
+    <main>
+        <h2>Szczegóły dotyczące skazanego <%= gper.Name %>
+                <%= gper.Surname %>
+        </h2>
+        <form class="form2" action="%formAction%">
+            <label for="Name">Imię:</label>
+            <input type="text" name="Name" id="Name" value="<%= gper.Name %>" disabled />
+            <label for="Surname">Nazwisko:</label>
+            <input type="text" name="Surname" id="Surname" value="<%= gper.Surname %>" disabled />
+            <label for="PhoneNumber">Numer telefonu:</label>
+            <input type="text" name="PhoneNumber" id="PhoneNumber" value="<%= gper.PhoneNumber %>" disabled />
+            <label for="PESEL">PESEL:</label>
+            <input type="text" name="PESEL" id="PESEL" value="<%= gper.PESEL %>" disabled />
+            <label for="DateofBirth">Data urodzenia:</label>
+            <input type="date" name="DateofBirth" id="DateofBirth"
+                value="<%= (gper.DateofBirth) ? gper.DateofBirth.toISOString().split('T')[0] : '' %>" disabled />
+            <label for="Residence">Miejsce zamieszkania:</label>
+            <input type="text" name="Residence" id="Residence" value="<%= gper.Residence %>" disabled />
+            <div class="form-buttons">
+                <a href="/gperson/edit/<%=gper.GpersonID%>" class="form-button-edit">Edytuj</a>
+            </div>
+        </form>
+        <h2>Wyroki</h2>
+        <div class="table">
+            <table class="table-list" id="judgmentL">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Zarzut</th>
+                        <th>Opis</th>
+                        <th>Werdykt</th>
+                        <th>Kara pieniężna</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let g of gper.judgments) { %>
+                        <tr>
+                            <td>
+                                <%= (g.Date) ? g.Date.toISOString().split('T')[0] : '' %>
+                            </td>
+                            <td>
+                                <%= g.charge.Name %>
+                            </td>
+                            <td>
+                                <%= g.Description %>
+                            </td>
+                            <td>
+                                <%= g.Verdict %>
+                            </td>
+                            <td>
+                                <%= g.Penalty %>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <a href="/gperson" class="form-button-return">Powrot</a>
+    </main>
+    <%- include('../fragments/footer.ejs') %>

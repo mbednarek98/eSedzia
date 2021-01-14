@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="icon" href="/imgs/favicon.png" type="image/gif" sizes="16x16">
+    <script src="/js/navbar.js"></script>
+    <script src="/js/validationCommon.js"></script>
+    <script src="/js/validationJudgment.js"></script>
+    <script src="/js/validationGperson.js"></script>
+    <script src="/js/validationCharge.js"></script>
+    <title>eSędzia</title>
+</head>
+
+<body>
+    <nav class="navbar" id="myNavbar">
+        <a class="active" href="/"><img src="/imgs/logo.png" class="logo" alt="eSedzia"></a>
+        <!--
+            <div class="dd">
+            <button class="dbutton">Sędziowie
+            </button>
+            <div class="dd-content">
+                <a href="/judge">Lista sędziów</a>
+                <a href="/judge/add">Nowy sędzia</a>
+            </div>
+        -->
+        <div class="dd">
+            <button class="dbutton">Wyroki
+            </button>
+            <div class="dd-content">
+                <a href="/judgment">Lista wyroków</a>
+                <a href="/judgment/add">Nowy wyrok</a>
+            </div>
+        </div>
+        </div>
+        <div class="dd">
+            <button class="dbutton">Skazani
+            </button>
+            <div class="dd-content">
+                <a href="/gperson">Lista skazanych</a>
+                <a href="/gperson/add">Nowy skazany</a>
+            </div>
+        </div>
+        <div class="dd">
+            <button class="dbutton">Zarzuty
+            </button>
+            <div class="dd-content">
+                <a href="/charge">Lista zarzutów</a>
+                <a href="/charge/add">Nowy zarzut</a>
+            </div>
+        </div>
+        <a style="font-size:37px;" class="icon" onclick="myNavbar()">&#9776;</a>
+    </nav>

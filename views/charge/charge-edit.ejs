@@ -1,0 +1,41 @@
+<%- include('../fragments/header.ejs') %>
+    <main>
+        <h2>Edycja zarzutu</h2>
+        <form id="chargeForm" class="form" method="post" action="<%=formAction%>" novalidate
+            onsubmit="return validateChargeForm();">
+            <!-- onsubmit="return validateChargeForm();" -->
+            <label for="Name">Nazwa zarzutu:<sup>*</sup></label>
+            <input type="text" name="Name" id="Name" value="<%= charg.Name %>"
+                class="<%= validationErrors.find(e => e.path.includes('Name')) ? 'error-input' : '' %>" />
+            <span id="errorName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Name')).message %>
+                        <% } %>
+            </span>
+
+            <label for="Type">Typ zarzutu:<sup>*</sup></label>
+            <input type="text" name="Type" id="Type" value="<%= charg.Type %>"
+                class="<%= validationErrors.find(e => e.path.includes('Type')) ? 'error-input' : '' %>" />
+            <span id="errorType" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Type'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Type')).message %>
+                        <% } %>
+            </span>
+
+            <label for="Description">Opis zarzutu:<sup>*</sup></label>
+            <textarea form="chargeForm" name="Description" id="Description" cols="35" rows="10" wrap="soft"
+                class="<%= validationErrors.find(e => e.path.includes('Description')) ? 'error-input' : '' %>"><%= charg.Description %></textarea>
+            <span id="errorDescription" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Description'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Description')).message %>
+                        <% } %>
+            </span>
+
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" value="Edytuj" class="form-button-edit" />
+                <a href="/charge" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+    </main>
+    <%- include('../fragments/footer.ejs') %>

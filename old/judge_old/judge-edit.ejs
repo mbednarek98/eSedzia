@@ -1,0 +1,60 @@
+<%- include('../fragments/header.ejs') %>
+    <main>
+        <h2>Edycja sędzi <%= judg.personJ.Name %>
+                <%= judg.personJ.Surname %>
+        </h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate>
+            <label for="Name">Imię:<sup>*</sup></label>
+            <input type="text" name="Name" id="Name" value="<%= judg.personJ.Name %>"
+                class="<%= validationErrors.find(e => e.path.includes('Name')) ? 'error-input' : '' %>" />
+            <span id="errorName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Name')).message %>
+                        <% } %>
+            </span>
+
+            <label for="Surname">Nazwisko:<sup>*</sup></label>
+            <input type="text" name="Surname" id="Surname" value="<%= judg.personJ.Surname %>"
+                class="<%= validationErrors.find(e => e.path.includes('Surname')) ? 'error-input' : '' %>" />
+            <span id="errorSurname" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Surname'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Surname')).message %>
+                        <% } %>
+            </span>
+
+            <label for="PhoneNumber">Numer telefonu:<sup>*</sup></label>
+            <input type="text" name="PhoneNumber" id="PhoneNumber" value="<%= judg.personJ.PhoneNumber %>"
+                class="<%= validationErrors.find(e => e.path.includes('PhoneNumber')) ? 'error-input' : '' %>" />
+            <span id="errorPhoneNumber" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('PhoneNumber'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('PhoneNumber')).message %>
+                        <% } %>
+            </span>
+
+            <label for="Retired">Emerytowany:<sup>*</sup></label>
+            <input type="text" name="Retired" id="Retired" value="<%= judg.Retired %>"
+                class="<%= validationErrors.find(e => e.path.includes('Retired')) ? 'error-input' : '' %>" />
+            <span id="errorRetired" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Retired'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Retired')).message %>
+                        <% } %>
+            </span>
+
+            <label for="DateofObtainingQualification">Data zdobycia kwalifikacji:<sup>*</sup></label>
+            <input type="date" name="DateofObtainingQualification" id="DateofObtainingQualification"
+                value="<%= (judg.DateofObtainingQualification) ? judg.DateofObtainingQualification.toISOString().split('T')[0] : '' %>"
+                class="<%= validationErrors.find(e => e.path.includes('DateofObtainingQualification')) ? 'error-input' : '' %>" />
+            <span id="errorDateofObtainingQualification" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('DateofObtainingQualification'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('DateofObtainingQualification')).message %>
+                        <% } %>
+            </span>
+
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" value="Edytuj" class="form-button-edit" />
+                <a href="/judge" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+    </main>
+    <%- include('../fragments/footer.ejs') %>

@@ -1,0 +1,73 @@
+<%- include('../fragments/header.ejs') %>
+    <main>
+        <h2>Nowy skazany</h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateGpersonForm();">
+            <!-- onsubmit="return validateGpersonForm();" -->
+            <label for="Name">Imię:<sup>*</sup></label>
+            <input type="text" name="Name" id="Name" placeholder="2-60 znaków"
+                class="<%= validationErrors.find(e => e.path.includes('Name')) ? 'error-input' : '' %>"
+                value="<%= data.Name %>" />
+            <span id="errorName" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Name'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Name')).message %>
+                        <% } %>
+            </span>
+
+            <label for="Surname">Nazwisko:<sup>*</sup></label>
+            <input type="text" name="Surname" id="Surname" placeholder="2-60 znaków"
+                class="<%= validationErrors.find(e => e.path.includes('Surname')) ? 'error-input' : '' %>"
+                value="<%= data.Surname %>" />
+            <span id="errorSurname" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Surname'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Surname')).message %>
+                        <% } %>
+            </span>
+
+            <label for="PhoneNumber">Numer telefonu:<sup>*</sup></label>
+            <input type="text" name="PhoneNumber" id="PhoneNumber" placeholder="9 cyfr"
+                class="<%= validationErrors.find(e => e.path.includes('PhoneNumber')) ? 'error-input' : '' %>"
+                value="<%= data.PhoneNumber %>" />
+            <span id="errorPhoneNumber" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('PhoneNumber'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('PhoneNumber')).message %>
+                        <% } %>
+            </span>
+
+            <label for="PESEL">PESEL:<sup>*</sup></label>
+            <input type="text" name="PESEL" id="PESEL" placeholder="11 cyfr"
+                class="<%= validationErrors.find(e => e.path.includes('PESEL')) ? 'error-input' : '' %>"
+                value="<%= data.PESEL %>" />
+            <span id="errorPESEL" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('PESEL'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('PESEL')).message %>
+                        <% } %>
+            </span>
+
+            <label for="DateofBirth">Data urodzenia:<sup>*</sup></label>
+            <input type="date" name="DateofBirth" id="DateofBirth"
+                class="<%= validationErrors.find(e => e.path.includes('DateofBirth')) ? 'error-input' : '' %>"
+                value="<%= data.DateofBirth %>" />
+            <span id="errorDateofBirth" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('DateofBirth'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('DateofBirth')).message %>
+                        <% } %>
+            </span>
+
+            <label for="Residence">Miejsce zamieszkania:<sup>*</sup></label>
+            <input type="text" name="Residence" id="Residence" placeholder="3-100 znaków"
+                class="<%= validationErrors.find(e => e.path.includes('Residence')) ? 'error-input' : '' %>"
+                value="<%= data.Residence %>" />
+            <span id="errorResidence" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Residence'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Residence')).message %>
+                        <% } %>
+            </span>
+
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" value="Dodaj" class="form-button-submit" />
+                <a href="/gperson" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+    </main>
+    <%- include('../fragments/footer.ejs') %>

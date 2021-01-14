@@ -1,0 +1,87 @@
+<%- include('../fragments/header.ejs') %>
+    <main>
+        <h2>Nowy wyrok</h2>
+        <form id="judgmentForm" method="post" action="<%=formAction%>" class="form" novalidate
+            onsubmit=" return validateJudgmentForm();">
+            <!-- onsubmit=" return validateJudgmentForm();" -->
+            <label for="Date">Data wyroku:<sup>*</sup></label>
+            <input type="date" name="Date" id="Date"
+                class="<%= validationErrors.find(e => e.path.includes('Date')) ? 'error-input' : '' %>"
+                value="<%= data.Date %>" />
+            <span id="errorDate" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Date'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Date')).message %>
+                        <% } %>
+            </span>
+
+            <label for="Description">Opis wyroku:<sup>*</sup></label>
+            <textarea form="judgmentForm" name="Description" id="Description" cols="35" rows="10" wrap="soft"
+                placeholder="10-500 znaków"
+                class="<%= validationErrors.find(e => e.path.includes('Description')) ? 'error-input' : '' %>"><%= data.Description %></textarea>
+            <span id="errorDescription" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Description'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Description')).message %>
+                        <% } %>
+            </span>
+
+            <label for="Verdict">Werdykt:<sup>*</sup></label>
+            <input type="text" name="Verdict" id="Verdict" placeholder="2-60 znaków"
+                class="<%= validationErrors.find(e => e.path.includes('Verdict')) ? 'error-input' : '' %>"
+                value="<%= data.Verdict %>" />
+            <span id="errorVerdict" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Verdict'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Verdict')).message %>
+                        <% } %>
+            </span>
+
+            <label for="Penalty">Kara pieniężna (PLN):<sup>*</sup></label>
+            <input type="number" name="Penalty" id="Penalty" step="0.01"
+                class="<%= validationErrors.find(e => e.path.includes('Penalty')) ? 'error-input' : '' %>"
+                value="<%= data.Penalty %>" />
+            <span id="errorPenalty" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('Penalty'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('Penalty')).message %>
+                        <% } %>
+            </span>
+
+            <label for="ChargeID">Zarzut:<sup>*</sup></label>
+            <select name="ChargeID" id="ChargeID"
+                class="<%= validationErrors.find(e => e.path.includes('ChargeID')) ? 'error-input' : '' %>">
+                <option value="" selected>--- Wybierz Zarzut ---</option>
+                <% for (let i=0; i<allCharges.length; i++) { let char=allCharges[i]; %>
+                    <option value="<%= char.ChargeID %>" <%=(char.ChargeID==data.ChargeID) ? 'selected' : '' %>>
+                        <%= char.Name %>
+                    </option>
+                    <% } %>
+            </select>
+            <span id="errorChargeID" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('ChargeID'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('ChargeID')).message %>
+                        <% } %>
+            </span>
+
+            <label for="GpersonID">Skazany:<sup>*</sup></label>
+            <select name="GpersonID" id="GpersonID"
+                class="<%= validationErrors.find(e => e.path.includes('GpersonID')) ? 'error-input' : '' %>">
+                <option value="" selected>--- Wybierz Skazanego ---</option>
+                <% for (let i=0; i<allGpersons.length; i++) { let gper=allGpersons[i]; %>
+                    <option value="<%= gper.GpersonID %>" <%=(gper.GpersonID==data.GpersonID) ? 'selected' : '' %>>
+                        <%= gper.Name %>
+                            <%= gper.Surname %>
+                    </option>
+                    <% } %>
+            </select>
+            <span id="errorGpersonID" class="errors-text">
+                <% if (validationErrors.find(e=> e.path.includes('GpersonID'))) { %>
+                    <%= validationErrors.find(e=> e.path.includes('GpersonID')).message %>
+                        <% } %>
+            </span>
+
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" value="Dodaj" class="form-button-submit" />
+                <a href="/judgment" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+    </main>
+    <%- include('../fragments/footer.ejs') %>

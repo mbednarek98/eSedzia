@@ -1,0 +1,56 @@
+<%- include('../fragments/header.ejs') %>
+    <main>
+        <h2>Szczegóły dotyczące zarzutu <%= charg.Name %>
+        </h2>
+        <form class="form2">
+            <label for="Name">Nazwa zarzutu: </label>
+            <input type="text" name="Name" id="Name" value="<%= charg.Name %>" disabled />
+            <label for="Type">Typ zarzutu: </label>
+            <input type="text" name="Type" id="Type" value="<%= charg.Type %>" disabled />
+            <label for="Description">Opis zarzutu: </label>
+            <textarea name="Description" id="Description" cols="35" rows="10" wrap="soft"
+                disabled><%= charg.Description %></textarea>
+            <div class="form-buttons">
+                <a href="/charge/edit/<%= charg.ChargeID %>" class="form-button-edit">Edytuj</a>
+            </div>
+        </form>
+        <h2>Wyroki</h2>
+        <div class="table">
+            <table class="table-list" id="judgmentL">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Opis</th>
+                        <th>Werdykt</th>
+                        <th>Kara pieniężna</th>
+                        <th>Skazany</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let g of charg.judgments) { %>
+                        <tr>
+                            <td>
+                                <%= (g.Date) ? g.Date.toISOString().split('T')[0] : '' %>
+                            </td>
+                            <td>
+                                <%= g.Description %>
+                            </td>
+                            <td>
+                                <%= g.Verdict %>
+                            </td>
+                            <td>
+                                <%= g.Penalty %>
+                            </td>
+                            <td>
+                                <%= g.gperson.Name %>
+                                    <%= g.gperson.Surname %>
+                            </td>
+
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <a href="/charge" class="form-button-return">Powrot</a>
+    </main>
+    <%- include('../fragments/footer.ejs') %>

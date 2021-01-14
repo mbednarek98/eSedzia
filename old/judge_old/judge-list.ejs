@@ -1,0 +1,49 @@
+<%- include('../fragments/header.ejs') %>
+    <main>
+        <h2>Lista sędziów</h2>
+        <div class="table">
+            <table class="table-list" id="judgeL">
+                <thead>
+                    <tr>
+                        <th>Imię</th>
+                        <th>Nazwisko</th>
+                        <th>Numer telefonu</th>
+                        <th>Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let judg of judgs) { %>
+                        <tr>
+                            <td>
+                                <%= judg.personJ.Name %>
+                            </td>
+                            <td>
+                                <%= judg.personJ.Surname %>
+                            </td>
+                            <td>
+                                <%= judg.personJ.PhoneNumber %>
+                            </td>
+                            <td>
+                                <ul class="list-actions">
+                                    <li>
+                                        <a href="judge/desc/<%=judg.personJ.PersonID%>"
+                                            class="list-actions-button-details">Szczegóły</a>
+                                    </li>
+                                    <li>
+                                        <a href="judge/edit/<%=judg.personJ.PersonID%>"
+                                            class="list-actions-button-edit">Edytuj</a>
+                                    </li>
+                                    <li>
+                                        <a href="judge/delete/<%=judg.personJ.PersonID%>"
+                                            class="list-actions-button-delete" onclick="alertFun()">Usuń</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="judge/add" class="button-add">Dodaj nowego sędzie</a></p>
+    </main>
+    <%- include('../fragments/footer.ejs') %>

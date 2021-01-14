@@ -1,0 +1,49 @@
+<%- include('../fragments/header.ejs') %>
+    <main>
+        <h2>Lista skazanych</h2>
+        <div class="table">
+            <table class="table-list" id="gpersonL">
+                <thead>
+                    <tr>
+                        <th>Imię</th>
+                        <th>Nazwisko</th>
+                        <th>PESEL</th>
+                        <th>Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let gper of gpers) { %>
+                        <tr>
+                            <td>
+                                <%= gper.Name %>
+                            </td>
+                            <td>
+                                <%= gper.Surname %>
+                            </td>
+                            <td>
+                                <%= gper.PESEL %>
+                            </td>
+                            <td>
+                                <ul class="list-actions">
+                                    <li>
+                                        <a href="/gperson/desc/<%=gper.GpersonID%>"
+                                            class="list-actions-button-details">Szczegóły</a>
+                                    </li>
+                                    <li>
+                                        <a href="/gperson/edit/<%=gper.GpersonID%>"
+                                            class="list-actions-button-edit">Edytuj</a>
+                                    </li>
+                                    <li>
+                                        <a href="/gperson/delete/<%=gper.GpersonID%>"
+                                            class="list-actions-button-delete">Usuń</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/gperson/add" class="button-add">Dodaj nowego skazanego</a></p>
+    </main>
+    <%- include('../fragments/footer.ejs') %>

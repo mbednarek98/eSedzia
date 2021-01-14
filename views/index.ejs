@@ -1,0 +1,55 @@
+<%- include('./fragments/header.ejs') %>
+
+    <body>
+        <main class="content">
+            <h2>Strona główna</h2>
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio voluptatem,
+                beatae ab officia labore
+                magnam
+                culpa delectus laudantium perferendis ea tempore nesciunt commodi, rerum libero aliquam necessitatibus
+                minima maxime animi, praesentium ut consectetur ullam optio soluta aperiam. Quisquam porro dolorum
+                assumenda
+                voluptatem vero rem, debitis quae rerum aut commodi hic!
+            </p>
+            <h2>Usługi i informacje</h2>
+            <div class="row">
+                <!--
+                <div class="column">
+                    <a href="/judge" class="acard">
+                        <div class="card">
+                            <h3>Sędziowie</h3>
+                            <img src="imgs/judge.png" alt="wyrok" class="imgcard">
+                        </div>
+                    </a>
+                </div>
+            -->
+                <div class="column">
+                    <a href="/gperson" class="acard">
+                        <div class="card">
+                            <h3>Skazani</h3>
+                            <img src="imgs/gperson.png" alt="wyrok" class="imgcard">
+                        </div>
+                    </a>
+                </div>
+
+                <div class="column">
+                    <a href="/judgment" class="acard">
+                        <div class="card">
+                            <h3>Wyroki</h3>
+                            <img src="imgs/judgment.png" alt="wyrok" class="imgcard">
+                        </div>
+                    </a>
+                </div>
+
+                <div class="column">
+                    <a href="/charge" class="acard">
+                        <div class="card">
+                            <h3>Zarzuty</h3>
+                            <img src="imgs/charge.png" alt="wyrok" class="imgcard">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </main>
+        <%- include('./fragments/footer.ejs') %>
